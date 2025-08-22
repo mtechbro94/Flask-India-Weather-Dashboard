@@ -1,0 +1,52 @@
+[
+    {
+        "city": "Mumbai",
+        "lat": 19.076,
+        "lon": 72.8777
+    },
+    {
+        "city": "Delhi",
+        "lat": 28.7041,
+        "lon": 77.1025
+    },
+    {
+        "city": "Bengaluru",
+        "lat": 12.9716,
+        "lon": 77.5946
+    },
+    {
+        "city": "Hyderabad",
+        "lat": 17.385,
+        "lon": 78.4867
+    },
+    {
+        "city": "Ahmedabad",
+        "lat": 23.0225,
+        "lon": 72.5714
+    },
+    {
+        "city": "Chennai",
+        "lat": 13.0827,
+        "lon": 80.2707
+    },
+    {
+        "city": "Kolkata",
+        "lat": 22.5726,
+        "lon": 88.3639
+    },
+    {
+        "city": "Pune",
+        "lat": 18.5204,
+        "lon": 73.8567
+    },
+    {
+        "city": "Jaipur",
+        "lat": 26.9124,
+        "lon": 75.7873
+    },
+    {
+        "city": "Lucknow",
+        "lat": 26.8467,
+        "lon": 80.9462
+    }
+]

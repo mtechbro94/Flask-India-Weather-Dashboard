@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>🌤️ Indian Weather Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>🌤️ Indian Weather Dashboard</h1>
+        <form method="POST">
+            <label for="city">Select a City:</label>
+            <select name="city" id="city" required>
+                <option value="" disabled {% if not selected_city %}selected{% endif %}>-- Choose City --</option>
+                {% for city in cities %}
+                    <option value="{{ city }}" {% if selected_city == city %}selected{% endif %}>{{ city }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit">Get Weather</button>
+        </form>
+
+        {% if error %}
+        <div class="weather-card" style="background:#ffe0e0;color:#a00;">
+            <b>Error:</b> {{ error }}
+        </div>
+        {% endif %}
+        {% if weather %}
+        <div class="weather-card">
+            <h2>{{ weather.city }}</h2>
+            <p><b>📅 Date:</b> {{ weather.date }}</p>
+            <p><b>🌡️ Temperature:</b> {{ weather.temperature }} °C</p>
+            <p><b>🤔 Feels Like:</b> {{ weather.feels_like }} °C</p>
+            <p><b>💧 Humidity:</b> {{ weather.humidity }} %</p>
+            <p><b>⚡ Pressure:</b> {{ weather.pressure }} hPa</p>
+            <p><b>🌬️ Wind Speed:</b> {{ weather.wind_speed }} m/s</p>
+            <p><b>☁️ Condition:</b> {{ weather.description }}</p>
+        </div>
+        {% endif %}
+
+        {% if forecast %}
+        <div class="weather-card" style="background:rgba(255,255,255,0.35);color:#1a237e;">
+            <h3 style="color:#e65100;">5-Day Forecast</h3>
+            <div class="forecast-container">
+                {% for day in forecast %}
+                <div class="forecast-day">
+                    <div><b>{{ day.date }}</b></div>
+                    <img src="https://openweathermap.org/img/wn/{{ day.icon }}@2x.png" alt="icon" width="50" height="50">
+                    <div><b>{{ day.temp }}°C</b></div>
+                    <div class="desc">{{ day.desc }}</div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

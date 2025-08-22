@@ -1,0 +1,50 @@
+pipeline {
+    agent any
+    environment {
+        IMAGE_NAME = 'flask-weather-dashboard'
+        CONTAINER_NAME = 'flask-weather-app'
+        PORT = '5000'
+        # Uncomment and set your API key if needed
+        # OPENWEATHER_API_KEY = credentials('openweather-api-key')
+    }
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    sh "docker build -t $IMAGE_NAME ."
+                }
+            }
+        }
+        stage('Test (Optional)') {
+            steps {
+                script {
+                    sh "docker run --rm $IMAGE_NAME python -m unittest discover || true"
+                }
+            }
+        }
+        stage('Stop Previous Container') {
+            steps {
+                script {
+                    sh "docker rm -f $CONTAINER_NAME || true"
+                }
+            }
+        }
+        stage('Run New Container') {
+            steps {
+                script {
+                    sh "docker run -d --name $CONTAINER_NAME -p $PORT:5000 $IMAGE_NAME"
+                }
+            }
+        }
+    }
+    post {
+        always {
+            echo 'Pipeline completed.'
+        }
+    }
+}
