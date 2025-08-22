@@ -6,8 +6,7 @@ from datetime import datetime
 from collections import OrderedDict
 
 # Set your OpenWeatherMap API key here (or use environment variable)
-API_KEY = os.getenv("OPENWEATHER_API_KEY", "93db53cf4d61827af7b9242e4eb9c0c2")
-
+API_KEY = os.getenv("OPENWEATHER_API_KEY", "WEATHER_API_KEY")
 # Load Indian cities from JSON (extract city names for dropdown)
 with open("static/indian_cities.json", "r", encoding="utf-8") as f:
     city_data = json.load(f)
